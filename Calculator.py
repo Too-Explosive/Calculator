@@ -4,7 +4,6 @@ class Calculator:
         self.master = master
         self.master.title("Calculator")
         master.minsize(width = 250, height = 300)
-        #Who knows how to make it so these are changeable from the GUI?
         self.p1 = tkinter.IntVar()
         self.p2 = tkinter.IntVar()
         self.solution = tkinter.IntVar()
