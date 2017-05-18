@@ -4,9 +4,10 @@ class Calculator:
         self.master = master
         self.master.title("Calculator")
         master.minsize(width = 250, height = 300)
-        self.p1 = tkinter.IntVar()
-        self.p2 = tkinter.IntVar()
-        self.solution = tkinter.IntVar()
+        #Who knows how to make it so these are changeable from the GUI?
+        self.p1 = tkinter.DoubleVar()
+        self.p2 = tkinter.DoubleVar()
+        self.solution = tkinter.DoubleVar()
         self.solution.set(0)
         self.p1.set(0)
         self.p2.set(0)
@@ -20,6 +21,8 @@ class Calculator:
         self.subtract = tkinter.Button(master, text = '-', command = lambda: self.solve("subtract"), width = 7)
         self.divide = tkinter.Button(master, text = '/', command = lambda: self.solve("divide"), width = 7)
         self.multiply = tkinter.Button(master, text = '*', command = lambda: self.solve("multiply"), width = 7)
+        self.power = tkinter.Button(master, text = '^', command = lambda: self.solve("power"), width = 7)
+        self.power.grid(row = 2, column = 1)
         self.add.grid(row = 0, column = 1)
         self.subtract.grid(row = 0, column = 2)
         self.divide.grid(row = 1, column = 1)
@@ -34,6 +37,8 @@ class Calculator:
                 print("ERROR")
             else:    
                 self.solution.set(self.p1.get() / self.p2.get())
+        elif method == "power":
+            self.solution.set(self.p1.get() ** self.p2.get())
         else:
             self.solution.set(self.p1.get() * self.p2.get())
 root = tkinter.Tk()
