@@ -43,9 +43,11 @@ class Calculator:
             self.solution.set(self.p1.get() ** self.p2.get())
         elif method == "log":
             if self.p2.get() == 0 and self.p1.get() != 0:
-                self.solution.set("UNDEFINED")
+                self.solution.set("ERROR")
             elif self.p2.get() == 1 and self.p1.get() != 1:
-                self.solution.set("UNDEFINED")
+                self.solution.set("ERROR")
+            elif self.p2.get() == 0 and self.p1.get() == 0:
+                self.solution.set("ERROR: UNDEFINED VALUE") 
             else:
                 self.solution.set(math.log(self.p1.get(), self.p2.get()))
         else:
