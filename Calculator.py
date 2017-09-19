@@ -1,3 +1,10 @@
+def factorial(x):
+    if x == 0:
+        return 0
+    elif x == 1:
+        return 1
+    else:
+        return x * factorial(x - 1)
 import tkinter
 import math
 class Calculator:
@@ -23,12 +30,14 @@ class Calculator:
         self.multiply = tkinter.Button(master, text = '*', command = lambda: self.solve("multiply"), width = 7)
         self.power = tkinter.Button(master, text = '^', command = lambda: self.solve("power"), width = 7)
         self.log = tkinter.Button(master, text = "log", command = lambda: self.solve("log"), width = 7)
+        self.fact = tkinter.Button(master, text = "!", command = lambda: self.solve("fact"), width = 7)
         self.power.grid(row = 2, column = 1)
         self.add.grid(row = 0, column = 1)
         self.subtract.grid(row = 0, column = 2)
         self.divide.grid(row = 1, column = 1)
         self.multiply.grid(row = 1, column = 2)
         self.log.grid(row = 2, column = 2)
+        self.fact.grid(row = 3, column = 1)
     def solve(self, method):
         if method == "add":
             self.solution.set(self.p1.get() + self.p2.get())
@@ -50,6 +59,8 @@ class Calculator:
                 self.solution.set("ERROR: UNDEFINED VALUE") 
             else:
                 self.solution.set(math.log(self.p1.get(), self.p2.get()))
+        elif method == "fact":
+            self.solution.set(factorial(self.p1.get()))
         else:
             self.solution.set(self.p1.get() * self.p2.get())
 root = tkinter.Tk()
