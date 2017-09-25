@@ -23,7 +23,8 @@ class Calculator:
         self.multiply = tkinter.Button(master, text = '*', command = lambda: self.solve("multiply"), width = 7)
         self.power = tkinter.Button(master, text = '^', command = lambda: self.solve("power"), width = 7)
         self.log = tkinter.Button(master, text = "log", command = lambda: self.solve("log"), width = 7)
-        self.fact = tkinter.Button(master, text = "!", command = lambda: self.solve("fact"), width = 7)
+        self.fact = tkinter.Button(master, text = '!', command = lambda: self.solve("fact"), width = 7)
+        self.ans = tkinter.Button(master, text = "ans", command = lambda: self.solve("ans"), width = 7)
         self.power.grid(row = 2, column = 1)
         self.add.grid(row = 0, column = 1)
         self.subtract.grid(row = 0, column = 2)
@@ -31,6 +32,7 @@ class Calculator:
         self.multiply.grid(row = 1, column = 2)
         self.log.grid(row = 2, column = 2)
         self.fact.grid(row = 3, column = 1)
+        self.ans.grid(row = 3, column = 2)
     def solve(self, method):
         if method == "add":
             self.solution.set(self.p1.get() + self.p2.get())
@@ -43,6 +45,8 @@ class Calculator:
                 self.solution.set(self.p1.get() / self.p2.get())
         elif method == "power":
             self.solution.set(self.p1.get() ** self.p2.get())
+        elif method == "ans":
+            self.p1.set(self.solution.get())
         elif method == "log":
             if self.p2.get() == 0 and self.p1.get() != 0:
                 self.solution.set("ERROR")
@@ -59,6 +63,8 @@ class Calculator:
                 self.solution.set(math.gamma(abs(self.p1.get() - 1)) * -1)
         else:
             self.solution.set(self.p1.get() * self.p2.get())
+        if self.solution.get() % 1 == 0:
+            self.solution.set(math.floor(self.solution.get()))
 root = tkinter.Tk()
 Calc = Calculator(root)
 root.mainloop()
