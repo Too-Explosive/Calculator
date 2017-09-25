@@ -53,7 +53,10 @@ class Calculator:
             else:
                 self.solution.set(math.log(self.p1.get(), self.p2.get()))
         elif method == "fact":
-            self.solution.set(math.gamma(self.p1.get() + 1))
+            if self.p1.get() >= 0:
+                self.solution.set(math.gamma(self.p1.get() + 1))
+            else:
+                self.solution.set(math.gamma(abs(self.p1.get() - 1)) * -1)
         else:
             self.solution.set(self.p1.get() * self.p2.get())
 root = tkinter.Tk()
